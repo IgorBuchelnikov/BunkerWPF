@@ -1,0 +1,54 @@
+﻿<Window x:Class="BunkerWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BunkerWPF"
+        mc:Ignorable="d"
+        MouseDown="DragWindow"
+        Title="Bunker" MinHeight="600" MinWidth="800" WindowStyle="None" Background="#FF191919" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid x:Name="MainGR">
+        <Image x:Name="FoneFrame" Margin="0" Source="Pictures/Fones/main_fone.jpg" Opacity="0.3" Stretch="Fill"/>
+        <Grid>
+            <Grid.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="Black" Offset="1"/>
+                    <GradientStop Color="#00000000" Offset="0.517"/>
+                </RadialGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <!--Top panel-->
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource ButtonIconDS}" Grid.Column="0" Click="MinimizedApp">
+                    <Viewbox Width="20" Height="20">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="White" VerticalAlignment="Bottom"
+                              Data="M20,14H4V10H20" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+                <Button Style="{StaticResource ButtonIconDS}" Command="{Binding CloseApp}" Grid.Column="1">
+                    <Viewbox Width="20" Height="20">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="White" 
+                              Data="M8.27,3L3,8.27V15.73L8.27,21H15.73C17.5,19.24 21,15.73 21,15.73V8.27L15.73,3M9.1,5H14.9L19,9.1V14.9L14.9,19H9.1L5,14.9V9.1M9.12,7.71L7.71,9.12L10.59,12L7.71,14.88L9.12,16.29L12,13.41L14.88,16.29L16.29,14.88L13.41,12L16.29,9.12L14.88,7.71L12,10.59" />
+                        </Canvas>
+                    </Viewbox>
+                </Button>
+            </Grid>
+            <!--AppBrowser-->
+            <Frame Grid.Row="1" Name="iAppBrowser" NavigationUIVisibility="Hidden">
+
+            </Frame>
+        </Grid>
+
+
+    </Grid>
+</Window>

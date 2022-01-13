@@ -1,0 +1,30 @@
+﻿<Page x:Class="BunkerWPF.Pages.NewGameDialog"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BunkerWPF.Pages"
+      mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+      Title="NewGameDialog">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="NewGameDialogGR">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Бункер пуст. Вы со своим?" HorizontalAlignment="Center" Margin="10"
+                           Style="{StaticResource TextBlockDS}" FontSize="20"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="iNewGameButton" Style="{StaticResource ButtonDS}"  Command="{Binding StartNewGame}">
+                <TextBlock Text="Новая игра" Style="{StaticResource TextBlockDS}"/>
+            </Button>
+            <Button x:Name="iLoadButton" Style="{StaticResource ButtonDS}" Grid.Column="1"  Command="{Binding LoadSavedGames}">
+                <TextBlock Text="Загрузить сохранение" Style="{StaticResource TextBlockDS}"/>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

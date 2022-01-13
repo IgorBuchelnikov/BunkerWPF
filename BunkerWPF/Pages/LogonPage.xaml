@@ -1,0 +1,55 @@
+﻿<Page x:Class="BunkerWPF.Pages.LogonPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BunkerWPF.Pages"
+      mc:Ignorable="d" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+      Title="LogonPage">
+    <Grid x:Name="LogonGR" Margin="0">
+        <Grid HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Viewbox Width="150" Height="150">
+                    <Canvas Width="24" Height="24">
+                        <Path Fill="White"
+                                  Data="M19 16H22L12 7L2 16H5L12 9.69L19 16M7 8.81V7H4V11.5L7 8.81Z" />
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+            <TextBlock Style="{StaticResource TextBlockDS}" FontSize="36" Text="BUNKER"
+                           Grid.Row="1" Foreground="White"
+                           HorizontalAlignment="Center"/>
+            <TextBox Grid.Row="2" Style="{StaticResource TextBoxDS}"
+                         Margin="0,0,0,10" Text="{Binding Login}"
+                         x:Name="iLogin"/>
+            <PasswordBox Grid.Row="3" Style="{StaticResource PassBoxDS}"
+                             Margin="0,0,0,10" PasswordChanged="PasswordChanged"
+                             x:Name="iPassword"/>
+            <Button Grid.Row="4" Style="{StaticResource ButtonDS}"
+                        HorizontalAlignment="Center"
+                        x:Name="iLoginButton"
+                    Command="{Binding CheckAuth}">
+                <Grid Margin="30,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Width="20" Height="20" Margin="10,0">
+                        <Canvas Width="24" Height="24">
+                            <Path Fill="White" Data="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBlock Text="Войти" Grid.Column="1"
+                                   VerticalAlignment="Center"/>
+                </Grid>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>
