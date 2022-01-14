@@ -8,21 +8,18 @@ using Bunker.ViewModels;
 
 namespace Bunker.Models
 {
-    public class Player
+    public class Player : INotifyPropertyChanged
     {
         public Player()
         {
-            _availableHeroes = HeroesData.GetAllSavedHero();
         }
         public Player(string name)
         {
             Name = name;
-            _availableHeroes = HeroesData.GetAllSavedHero();
         }
         private string _name;
         private Purpose _purpose;
         private Hero _hero;
-        private ObservableCollection<Hero> _availableHeroes;
 
         public string Name
         {
@@ -48,18 +45,7 @@ namespace Bunker.Models
                 OnPropertyChanged("Hero");
             }
         }
-        public ObservableCollection<Hero> AvailableHeroes
-        {
-            get
-            {
-                return _availableHeroes;
-            }
-            set
-            {
-                _availableHeroes = value;
-                OnPropertyChanged("AvailableHeroes");
-            }
-        }
+
         public Purpose Purpose
         {
             get
@@ -73,11 +59,6 @@ namespace Bunker.Models
             }
         }
 
-        public void SetRandomHero()
-        {
-            Random random = new Random();
-            Hero = AvailableHeroes[random.Next(1, AvailableHeroes.Count)];
-        }
 
         public override string ToString()
         {

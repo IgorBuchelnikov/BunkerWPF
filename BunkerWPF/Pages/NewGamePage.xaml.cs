@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Bunker.ViewModels;
 using Bunker.Models;
+using BunkerWPF.ViewModels.StartGame;
 
 namespace BunkerWPF.Pages
 {
@@ -18,13 +19,7 @@ namespace BunkerWPF.Pages
         public NewGamePage()
         {
             InitializeComponent();
-            DataContext = AppViewModel.Instance;
-        }
-
-        private void HeroCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {            
-            if( (this.DataContext as AppViewModel).IsEventLocked == false)
-                (this.DataContext as AppViewModel).ClearAllUsedHeroes.Execute(null);
+            DataContext = ViewModel.Instance;
         }
     }
 }

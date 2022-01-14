@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Bunker.ViewModels;
+using BunkerWPF.ViewModels.StartGame;
 
 namespace BunkerWPF.Pages
 {
@@ -17,7 +18,7 @@ namespace BunkerWPF.Pages
         public NewGameDialog()
         {
             InitializeComponent();
-            this.DataContext = AppViewModel.Instance;
+            this.DataContext = ViewModel.Instance;
         }
     }
 }

@@ -56,8 +56,14 @@
     <Reference Include="Microsoft.SDK.Expression.Blend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\Microsoft.SDK.Expression.Blend.dll</HintPath>
     </Reference>
+    <Reference Include="ObservableComputations, Version=2.3.0.0, Culture=neutral, PublicKeyToken=f929bfa2aaeea235, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObservableComputations.2.3.0\lib\net461\ObservableComputations.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SDK.Expression.Blend.1.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -97,8 +103,9 @@
     <Compile Include="Pages\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\StartGame\ViewModel.cs" />
     <Compile Include="ViewModels\Command.cs" />
+    <Compile Include="ViewModels\StartGame\PlayerViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

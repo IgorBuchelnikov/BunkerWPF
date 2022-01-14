@@ -1,33 +1,29 @@
 ﻿using System;
-//using System.Linq;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows.Navigation;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Navigation;
 using Bunker.Models;
-using Bunker.Data;
-using BunkerWPF.Pages;
+using Bunker.ViewModels;
+using ObservableComputations;
 
-namespace Bunker.ViewModels
+namespace BunkerWPF.ViewModels.StartGame
 {
-    public class AppViewModel
+    class ViewModel : IDisposable
     {
         #region Instance
-        private static AppViewModel _instance;
-        public AppViewModel() 
+        private static ViewModel _instance;
+        public ViewModel() 
         {
-            SelectedPlayers = new ObservableCollection<Player>();
+            SelectedPlayers = new ObservableCollection<PlayerViewModel>();
         }
-        public static AppViewModel Instance
+        public static ViewModel Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    _instance = new AppViewModel();
+                    _instance = new ViewModel();
                 }
 
                 return _instance;
@@ -105,6 +101,8 @@ namespace Bunker.ViewModels
         //private Command _allPlayerRandomHeroes;
         private Command _clearAllUsedHeroes;
 
+        private OcConsumer _ocConsumer = new OcConsumer();
+
         public Command StartNewGame
         {
             get
@@ -148,24 +146,15 @@ namespace Bunker.ViewModels
                     (_startGame = new Command(action => { LoadPlayersAndStartGame(); }));
             }
         }
-        public Command ClearAllUsedHeroes
-        {
-            get
-            {
-                return _clearAllUsedHeroes ??
-                    (_clearAllUsedHeroes = new Command(action => { ClearUsedHeroesFromAvailableList(); }));
-            }
-        }
 
         private void LoadPlayersAndStartGame()
         {
-            SelectedPlayers[1].AvailableHeroes.RemoveAt(1); //TODO
         }
+
         private void ShowStartNewGameScreen()
         {
-            SelectedPlayers.Add(new Player());
-            SelectedPlayers.Add(new Player());
-            OnPropertyChanged("SelectedPlayers");
+            SelectedPlayers.Add(new PlayerViewModel(new Player(), _ocConsumer));
+            SelectedPlayers.Add(new PlayerViewModel(new Player(), _ocConsumer));
             NavigationService.Navigate(new Uri("Pages/NewGamePage.xaml", UriKind.Relative));
         }
         private void LoadSavedGamesFromFile()
@@ -176,11 +165,8 @@ namespace Bunker.ViewModels
         {
             if (SelectedPlayers.Count < 9)
             {
-                Player newPlayer = new Player();
+                PlayerViewModel newPlayer = new PlayerViewModel(new Player(), _ocConsumer);
                 SelectedPlayers.Add(newPlayer);
-                //ClearUsedHeroesFromAvailableList();
-                OnPropertyChanged("SelectedPlayers");
-                OnPropertyChanged("AvailableHeroes");
             }
         }
 
@@ -193,16 +179,11 @@ namespace Bunker.ViewModels
             }
         }
 
-        private void ClearUsedHeroesFromAvailableList()
-        {
-            SelectedPlayers[1].AvailableHeroes.RemoveAt(1); //TODO
-        }
-
 
         #endregion
         #region Game
-        private ObservableCollection<Player> _selectedPlayers;
-        public ObservableCollection<Player> SelectedPlayers
+        private ObservableCollection<PlayerViewModel> _selectedPlayers;
+        public ObservableCollection<PlayerViewModel> SelectedPlayers
         {
             get
             {
@@ -240,5 +221,11 @@ namespace Bunker.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
         #endregion
+
+
+        public void Dispose()
+        {
+	        _ocConsumer.Dispose();
+        }
     }
 }

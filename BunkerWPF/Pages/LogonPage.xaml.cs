@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Bunker.ViewModels;
+using BunkerWPF.ViewModels.StartGame;
 
 namespace BunkerWPF.Pages
 {
@@ -24,7 +25,7 @@ namespace BunkerWPF.Pages
         public LogonPage()
         {
             InitializeComponent();
-            this.DataContext = AppViewModel.Instance;
+            this.DataContext = ViewModel.Instance;
         }
         private void PasswordChanged(object sender, RoutedEventArgs e)
         {

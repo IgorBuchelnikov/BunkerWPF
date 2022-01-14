@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Bunker.ViewModels;
+using BunkerWPF.ViewModels.StartGame;
 
 namespace BunkerWPF
 {
@@ -17,10 +18,10 @@ namespace BunkerWPF
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new AppViewModel();
-            AppViewModel.Instance.Login = "Dev";
-            AppViewModel.Instance.Password = "Bunker";
-            AppViewModel.Instance.NavigationService = iAppBrowser.NavigationService;
+            DataContext = new ViewModel();
+            ViewModel.Instance.Login = "Dev";
+            ViewModel.Instance.Password = "Bunker";
+            ViewModel.Instance.NavigationService = iAppBrowser.NavigationService;
             iAppBrowser.Navigate(new Uri("Pages/LogonPage.xaml", UriKind.Relative));
         }
 
